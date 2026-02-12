@@ -13,7 +13,7 @@ class EncryptStream extends Transform {
   }
 
   _transform(chunk, encoding, callback) {
-    const cipher = crypto.createCipheriv("aes-192-ocb", this.key, this.vector);
+    const cipher = crypto.createCipheriv("aes-256-cbc", this.key, this.vector);
     const encrypted = Buffer.concat([cipher.update(chunk), cipher.final()]); //encrypt the chunk data
     this.push(encrypted);
     callback();

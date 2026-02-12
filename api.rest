@@ -1,0 +1,13 @@
+
+###
+DELETE http://localhost:3000/api/data/
+###
+GET  http://localhost:3000/api/data/
+###
+
+POST http://localhost:3000/api/data/
+Content-Type: application/json
+
+{
+    "name": "test1", "job":"coder"
+}
