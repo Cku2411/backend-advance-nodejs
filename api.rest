@@ -1,13 +1,14 @@
 
+PORT = 5500
 ###
-DELETE http://localhost:3000/api/data/
+DELETE http://localhost:5500/api/data/
 ###
-GET  http://localhost:3000/api/data/
+GET  http://localhost:5500/
 ###
 
-POST http://localhost:3000/api/data/
+POST http://localhost:5500/auth/register/
 Content-Type: application/json
 
 {
-    "name": "test1", "job":"coder"
+    "userName": "cku24", "password":"coder"
 }

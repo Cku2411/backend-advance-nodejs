@@ -2,6 +2,8 @@ import express from "express";
 import { config } from "dotenv";
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
+import authRoutes from "./routes/authRoutes.js";
+import todoRoutes from "./routes/todoRoutes.js";
 
 config();
 
@@ -24,6 +26,8 @@ app.get("/", (req, res) => {
 });
 
 // Website endpoint
+app.use("/auth", authRoutes);
+app.use("/todos", todoRoutes);
 
 const server = app.listen(PORT, () => {
   console.log(`Server is running http://localhost:${PORT}`);
