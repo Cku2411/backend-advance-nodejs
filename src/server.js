@@ -4,6 +4,7 @@ import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 import authRoutes from "./routes/authRoutes.js";
 import todoRoutes from "./routes/todoRoutes.js";
+import authMiddleware from "./middleware/authMiddleware.js";
 
 config();
 
@@ -27,7 +28,7 @@ app.get("/", (req, res) => {
 
 // Website endpoint
 app.use("/auth", authRoutes);
-app.use("/todos", todoRoutes);
+app.use("/todos", authMiddleware, todoRoutes);
 
 const server = app.listen(PORT, () => {
   console.log(`Server is running http://localhost:${PORT}`);

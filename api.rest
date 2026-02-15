@@ -10,5 +10,18 @@ POST http://localhost:5500/auth/register/
 Content-Type: application/json
 
 {
-    "userName": "cku24", "password":"coder"
+    "username": "cku24@gmail.com", "password":"coder"
 }
+
+###
+POST http://localhost:5500/auth/login/
+Content-Type: application/json
+
+{
+    "username": "cku24@gmail.com", "password":"coder"
+}
+
+### TO DO
+GET  http://localhost:5500/todos
+Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzcxMTQ2NTA5LCJleHAiOjE3NzEyMzI5MDl9.GU9Kt3hQVW2TbW4zx-P1JANw0Ce6KAkJw6BmzGIVxEg"
+

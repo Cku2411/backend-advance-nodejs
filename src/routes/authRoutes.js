@@ -32,16 +32,14 @@ router.post("/register", (req, res) => {
     // check all users
 
     const users = db.prepare("SELECT * FROM users").all();
-    console.log("Users:", users);
 
     // Truy xuất todos theo user_id
     const userTodos = db
       .prepare("SELECT * FROM todos WHERE user_id = ?")
       .all(1);
-    console.log("Todos của user 1:", userTodos);
 
     // create a token to send back
-    const token = jwt.sign({ id: userId }, process.env.JW_SECRET, {
+    const token = jwt.sign({ id: userId }, process.env.JWT_SECRET, {
       expiresIn: "24h",
     });
 
@@ -54,8 +52,33 @@ router.post("/register", (req, res) => {
 });
 
 router.post("/login", (req, res) => {
-  console.log("hello");
-  res.send(JSON.stringify("ehllo"));
-});
+  const { username, password } = req.body;
+  console.log({ username, password });
 
+  try {
+    const getUser = db.prepare(`
+      SELECT * FROM users WHERE username = ?`);
+    const user = getUser.get(username);
+
+    if (!user) {
+      return res.status(404).send({ message: "User not found" });
+    }
+
+    // if user, then check the password
+    const passwordIsValid = bcrypt.compareSync(password, user.password);
+    if (!passwordIsValid)
+      return res.status(401).send({ message: "Invalid Password" });
+
+    // then we have a successfully
+    const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
+      expiresIn: "24h",
+    });
+
+    // sendBack to user
+    res.json({ token });
+  } catch (error) {
+    console.log(error.message);
+    res.sendStatus(503);
+  }
+});
 export default router;
