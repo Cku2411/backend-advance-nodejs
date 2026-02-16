@@ -15,7 +15,20 @@ router.get("/", (req, res) => {
 });
 
 // create new todo
-router.post("/", () => {});
+router.post("/", (req, res) => {
+  console.log(`post more todos`);
+  const { task } = req.body;
+
+  // add default todo
+  const defaultTodo = `Hello :), Add your 1st todo`;
+  const insertTodo = db.prepare(
+    `INSERT INTO todos (user_id, task) VALUES(?,?)`,
+  );
+
+  const addTodos = db.prepare(`
+
+    `);
+});
 
 // updat todo
 router.put("/:id", () => {});
