@@ -17,17 +17,21 @@ router.get("/", (req, res) => {
 // create new todo
 router.post("/", (req, res) => {
   console.log(`post more todos`);
+
+  console.log(req.userId);
+  console.log(req.body);
+
   const { task } = req.body;
+  if (!task) {
+    return res.status(404).send({ message: "Task not found" });
+  }
 
+  const userId = req.userId;
   // add default todo
-  const defaultTodo = `Hello :), Add your 1st todo`;
-  const insertTodo = db.prepare(
-    `INSERT INTO todos (user_id, task) VALUES(?,?)`,
-  );
+  const addTodo = db.prepare(`INSERT INTO todos (user_id, task) VALUES(?,?)`);
 
-  const addTodos = db.prepare(`
-
-    `);
+  addTodo.run(userId, task);
+  res.json({ id: addTodo.lastID, task, completed: 0 });
 });
 
 // updat todo

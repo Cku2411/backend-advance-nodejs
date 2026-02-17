@@ -10,7 +10,7 @@ POST http://localhost:5500/auth/register/
 Content-Type: application/json
 
 {
-    "username": "cku24@gmail.com", "password":"coder"
+    "username": "cku25@gmail.com", "password":"coder"
 }
 
 ###
@@ -23,5 +23,13 @@ Content-Type: application/json
 
 ### TO DO
 GET  http://localhost:5500/todos
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzcxMjE0MjMzLCJleHAiOjE3NzEzMDA2MzN9.cRJwQrX41EmdIazAh1pAAg4dI6mb9EEM35D2_3VsjuU
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzcxMzI1ODYwLCJleHAiOjE3NzE0MTIyNjB9.W3aiV_X5IasQphD68b7nA9t0GviONMHcbiIVmgFCCus
 
+### ADD TODO
+POST  http://localhost:5500/todos
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzcxMzI1ODYwLCJleHAiOjE3NzE0MTIyNjB9.W3aiV_X5IasQphD68b7nA9t0GviONMHcbiIVmgFCCus
+Content-Type: application/json
+
+{
+    "task": "The last one"
+}
